@@ -1,0 +1,20 @@
+.Button {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    font-size: 36px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    cursor: pointer;
+}
+
+.Button.On {
+    background: green;
+    border: 1px solid green;
+}
+
+.Button.Off {
+    background: red;
+    border: 1px solid red;
+}
