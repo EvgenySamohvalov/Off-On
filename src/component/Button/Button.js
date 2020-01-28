@@ -9,48 +9,48 @@ class Button extends Component {
         super();
 
         this.state = {
-            stateButton: 'On'
+            stateButton: 'Off'
         }
 
-        axios.get('https://off-on-3e272.firebaseio.com/button.json').then(
+        axios.get('https://off-on-3e272.firebaseio.com/button.json')
+        .then(
             response => {
-                this.setState({response.data})
+                console.log(response.data.stateButton)
+                this.setState({stateButton:response.data.stateButton})
             }
         )
     }
-
-    // switchButton = () => {
-    //     this.state.stateButton === 'Off' ?
-    //     this.setState({ stateButton: 'On'}):
-    //     this.setState({ stateButton: 'Off'})
-    // }
 
     switchButton = () => {
         this.state.stateButton === 'Off' ?
         this.setState({ stateButton: 'On'}):
         this.setState({ stateButton: 'Off'})
-        axios.put('https://off-on-3e272.firebaseio.com/button.json', this.state)
-        .then(response => {
-            // console.log(response)
-        })
-        .catch(error => console.error(error))
-    }
-
-
-    componentDidMount() {
-        axios.get('https://off-on-3e272.firebaseio.com/button.json').then(
-            response => {
-                console.log(response.data)
-            }
-        )
     }
 
     render() {
+
         return (
             <button className={this.state.stateButton === 'Off'? 'Button Off': 'Button On'} onClick={this.switchButton}>
                 {this.state.stateButton}
             </button>
         ) 
+    }
+
+    componentDidUpdate() {
+
+        axios.put('https://off-on-3e272.firebaseio.com/button.json', this.state)
+        .then(response => {
+
+        })
+
+    }
+
+    componentWillUnmount() {
+        this.setState({ stateButton: 'Off'})
+        axios.put('https://off-on-3e272.firebaseio.com/button.json', this.state)
+        .then(response => {
+
+        })
     }
 }
 
