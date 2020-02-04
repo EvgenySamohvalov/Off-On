@@ -1,7 +1,6 @@
 const initialState = {
     stateButton: false
 }
-
 export default function buttonReducer(state = initialState, action) {
     switch (action.type) {
         case 'SWITCH':

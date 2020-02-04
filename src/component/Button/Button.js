@@ -10,7 +10,7 @@ class Button extends Component {
         axios.get('https://off-on-3e272.firebaseio.com/button.json')
         .then(
             response => {
-                this.props.setFirstStateButton(response.data.stateButton)
+                this.props.setFirstStateButton(response.data)
             }
         )
     }
